@@ -1,0 +1,26 @@
+{
+  "name": "sf-xml",
+  "version": "1.0.0",
+  "description": "helper for changing XML in SF",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/grebmeg/sf-xml.git"
+  },
+  "keywords": [
+    "xml",
+    "salesforce"
+  ],
+  "author": "grebmeg",
+  "license": "(MIT)",
+  "bugs": {
+    "url": "https://github.com/grebmeg/sf-xml/issues"
+  },
+  "homepage": "https://github.com/grebmeg/sf-xml#readme",
+  "dependencies": {
+    "xml2js": "^0.4.17"
+  }
+}
