@@ -2,13 +2,13 @@ module.exports.changeXMLObject = function (object, type, propeties) {
   if ( propeties.hasOwnProperty('-delete') ) {
     switch (type) {
       case '-fp':
-        return deleteXML( object, propeties, 'fieldPermissions' );
+        return deleteXML( object, propeties, 'fieldPermissions', 'field' );
         break;
       case '-la':
-        return deleteXML(object, propeties, 'layoutAssignments');
+        return deleteXML(object, propeties, 'layoutAssignments', 'layout');
         break;
       case '-rtv':
-        return deleteXML(object, propeties, 'recordTypeVisibilities');
+        return deleteXML(object, propeties, 'recordTypeVisibilities', 'recordType');
         break;
     }
   } else {
@@ -26,12 +26,12 @@ module.exports.changeXMLObject = function (object, type, propeties) {
   }
 };
 
-function deleteXML( object, propeties, permission ) {
+function deleteXML( object, propeties, permission, definitionName ) {
   console.log( JSON.stringify( object.Profile, null, '  ' ));
   if ( object.Profile.hasOwnProperty( permission ) ) {
     let elForDel = [];
     object.Profile[ permission ].forEach( ( el, index, array ) => {
-        if ( el[ 'recordType' ][0] === propeties['-n'] ) {
+        if ( el[ definitionName ][0] === propeties['-n'] ) {
           elForDel.push( index );
         }
       }

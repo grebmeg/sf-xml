@@ -24,7 +24,7 @@ process.argv.forEach(function (val, index, array) {
     default :
       let values = val.split('=');
       if (values[1][0] === '"' || values[1][0] === '\'') {
-        values[1] = values[1].substr(1, values[1].length - 1);
+        values[1] = values[1].substr(1, values[1].length - 2);
       }
       propeties[values[0]] = values[1];
       break;
