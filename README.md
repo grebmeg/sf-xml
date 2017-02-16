@@ -8,9 +8,12 @@ In below link is given all metadata for profile definition:
 - [x] adding and deleting 'fieldPermissions' for one or more profiles;
 - [x] adding and deleting 'layoutAssignments' for one or more profiles;
 - [x] adding and deleting 'recordTypeVisibilities' for one or more profiles;
+- [x] performing command for clearing all profiles;
+- [ ] performing command for clearing only one profile;
 - [ ] performing commands from prepared file;
 - [ ] beforehand check of existing permission;
 - [ ] error handling;
+- [ ] change names of parameters for command in the better way;
 - [ ] generate one script file without dependencies from '/node_modules' folder;
 - [ ] refactor adding or deleting permissions;
 
@@ -33,14 +36,22 @@ npm i
 * files:<br/>
     * "System Administrator.profile" - name of file, for example;
     * -all - parameter for updating all of the files in folder;
+    * -clear - parameter for clearing all profiles;
 * type - type of XML permission:
     * -fp - mathes 'fieldPermissions';
     * -la - mathes 'layoutAssignments';
     * -rtv - mathes 'recordTypeVisibilities';
+    * -op - mathes 'objectPermissions';
 * values - parameters XML permission:
-    * -n=[name] - name of field from SObject;
-    * -w=[true|false] - permission for write;
-    * -r=[true|false] - permission for read;
+    * -n=[name] - name of field or layout or object in depends on type;
+    * -w=[true|false] - permission for 'editable';
+    * -r=[true|false] - permission for 'readable'';
+    * -c=[true|false] - permission for 'allowCreate';
+    * -d=[true|false] - permission for 'allowDelete';
+    * -e=[true|false] - permission for 'allowEdit';
+    * -r=[true|false] - permission for 'allowRead';
+    * -mr=[true|false] - permission for 'modifyAllRecords';
+    * -vr=[true|false] - permission for 'viewAllRecords';
     * -delete=[true] - delete this.
     
 For example:  

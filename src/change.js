@@ -10,6 +10,9 @@ module.exports.changeXMLObject = function (object, type, propeties) {
       case '-rtv':
         return deleteXML(object, propeties, 'recordTypeVisibilities', 'recordType');
         break;
+      case '-op':
+        return deleteXML(object, propeties, 'objectPermissions', 'object');
+        break;
     }
   } else {
     switch (type) {
@@ -22,12 +25,29 @@ module.exports.changeXMLObject = function (object, type, propeties) {
       case '-rtv':
         return addRecordTypeVisibilities(object, propeties);
         break;
+      case '-op':
+        return addObjectPermissions(object, propeties);
+        break;
     }
   }
 };
 
+module.exports.clearXMLObject = function (object) {
+  return clearXML( object );
+};
+
+function clearXML( object ) {
+  let perm = ['fieldPermissions', 'layoutAssignments', 'recordTypeVisibilities', 'classAccesses', 'userLicense', 'pageAccesses', 'userPermissions', 'objectPermissions'];
+  perm.forEach( ( el, index, array ) => {
+    if ( object.Profile.hasOwnProperty( el ) ) {
+      delete object.Profile[el];
+    }
+  });
+
+  return object;
+}
+
 function deleteXML( object, propeties, permission, definitionName ) {
-  console.log( JSON.stringify( object.Profile, null, '  ' ));
   if ( object.Profile.hasOwnProperty( permission ) ) {
     let elForDel = [];
     object.Profile[ permission ].forEach( ( el, index, array ) => {
@@ -37,12 +57,30 @@ function deleteXML( object, propeties, permission, definitionName ) {
       }
     );
     elForDel.reverse();
-    console.log( elForDel );
     for( let i = 0; i < elForDel.length; i++ ) {
       object.Profile[ permission ].splice( elForDel[i], 1 );
     }
 
   }
+
+  return object;
+}
+
+function addObjectPermissions(object, propeties) {
+  if (object.Profile.hasOwnProperty('objectPermissions')) {
+
+  } else {
+    object.Profile['objectPermissions'] = [];
+  }
+  object.Profile['objectPermissions'].push({
+    'allowCreate': propeties['-c'],
+    'allowDelete': propeties['-d'],
+    'allowEdit': propeties['-e'],
+    'allowRead': propeties['-r'],
+    'modifyAllRecords': propeties['-mr'],
+    'object': propeties['-n'],
+    'viewAllRecords': propeties['-vr']
+  });
 
   return object;
 }

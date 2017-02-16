@@ -1,5 +1,6 @@
 const overwriteFiles = require('./src/parse.js').overwriteFiles,
-  overwriteFile = require('./src/parse.js').overwriteFile;
+  overwriteFile = require('./src/parse.js').overwriteFile,
+  clearFiles = require('./src/parse.js').clearFiles;
 
 let folder,
   file,
@@ -38,6 +39,9 @@ console.log('path >>> ', __dirname + '\\' + folder + '\\' + file);
 switch (file) {
   case '-all':
     overwriteFiles(__dirname, folder, type, propeties);
+    break;
+  case '-clear':
+    clearFiles(__dirname, folder);
     break;
   default:
     overwriteFile(__dirname, folder, file, type, propeties);
