@@ -9,7 +9,7 @@ In below link is given all metadata for profile definition:
 - [x] adding and deleting 'layoutAssignments' for one or more profiles;
 - [x] adding and deleting 'recordTypeVisibilities' for one or more profiles;
 - [x] performing command for clearing all profiles;
-- [ ] performing command for clearing only one profile;
+- [x] performing command for clearing only one profile;
 - [ ] performing commands from prepared file;
 - [ ] beforehand check of existing permission;
 - [ ] error handling;
@@ -19,16 +19,15 @@ In below link is given all metadata for profile definition:
 
 ## Install
 
-1. Download git repo
+1. Download git repo in folder where 'package.xml' was placed
 2. Install Node.js
 3. Install dependencies from package.json command:  
 npm i
-4. Put 'app.js' in folder where 'package.xml' was placed
 5. Use commands below
 
 ## Explanation
 
-`node app folder=[relative path] files=[name of file|-all] type=[-fp|-la|-rtv] values=[-n=[name]|-w=[true|false]|-r=[true|false]|-delete=[true]]`
+`node app folder=[relative path] files=[name of file|-all|-clear] type=[-fp|-la|-rtv|-op] values=[look below]`
 
 , where:
 * app - name of js file for running;

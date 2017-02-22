@@ -1,32 +1,32 @@
-module.exports.changeXMLObject = function (object, type, propeties) {
-  if ( propeties.hasOwnProperty('-delete') ) {
+module.exports.changeXMLObject = function (object, type, properties) {
+  if ( properties.hasOwnProperty('-delete') ) {
     switch (type) {
       case '-fp':
-        return deleteXML( object, propeties, 'fieldPermissions', 'field' );
+        return deleteXML( object, properties, 'fieldPermissions', 'field' );
         break;
       case '-la':
-        return deleteXML(object, propeties, 'layoutAssignments', 'layout');
+        return deleteXML(object, properties, 'layoutAssignments', 'layout');
         break;
       case '-rtv':
-        return deleteXML(object, propeties, 'recordTypeVisibilities', 'recordType');
+        return deleteXML(object, properties, 'recordTypeVisibilities', 'recordType');
         break;
       case '-op':
-        return deleteXML(object, propeties, 'objectPermissions', 'object');
+        return deleteXML(object, properties, 'objectPermissions', 'object');
         break;
     }
   } else {
     switch (type) {
       case '-fp':
-        return addFieldPermissions(object, propeties);
+        return addFieldPermissions(object, properties);
         break;
       case '-la':
-        return addLayoutAssignments(object, propeties);
+        return addLayoutAssignments(object, properties);
         break;
       case '-rtv':
-        return addRecordTypeVisibilities(object, propeties);
+        return addRecordTypeVisibilities(object, properties);
         break;
       case '-op':
-        return addObjectPermissions(object, propeties);
+        return addObjectPermissions(object, properties);
         break;
     }
   }
@@ -47,11 +47,11 @@ function clearXML( object ) {
   return object;
 }
 
-function deleteXML( object, propeties, permission, definitionName ) {
+function deleteXML( object, properties, permission, definitionName ) {
   if ( object.Profile.hasOwnProperty( permission ) ) {
     let elForDel = [];
     object.Profile[ permission ].forEach( ( el, index, array ) => {
-        if ( el[ definitionName ][0] === propeties['-n'] ) {
+        if ( el[ definitionName ][0] === properties['-n'] ) {
           elForDel.push( index );
         }
       }
@@ -66,63 +66,63 @@ function deleteXML( object, propeties, permission, definitionName ) {
   return object;
 }
 
-function addObjectPermissions(object, propeties) {
+function addObjectPermissions(object, properties) {
   if (object.Profile.hasOwnProperty('objectPermissions')) {
 
   } else {
     object.Profile['objectPermissions'] = [];
   }
   object.Profile['objectPermissions'].push({
-    'allowCreate': propeties['-c'],
-    'allowDelete': propeties['-d'],
-    'allowEdit': propeties['-e'],
-    'allowRead': propeties['-r'],
-    'modifyAllRecords': propeties['-mr'],
-    'object': propeties['-n'],
-    'viewAllRecords': propeties['-vr']
+    'allowCreate': properties['-c'],
+    'allowDelete': properties['-d'],
+    'allowEdit': properties['-e'],
+    'allowRead': properties['-r'],
+    'modifyAllRecords': properties['-mr'],
+    'object': properties['-n'],
+    'viewAllRecords': properties['-vr']
   });
 
   return object;
 }
 
-function addRecordTypeVisibilities(object, propeties) {
+function addRecordTypeVisibilities(object, properties) {
   if (object.Profile.hasOwnProperty('recordTypeVisibilities')) {
 
   } else {
     object.Profile['recordTypeVisibilities'] = [];
   }
   object.Profile['recordTypeVisibilities'].push({
-    'recordType': propeties['-n'],
-    'default': propeties['-d'],
-    'visible': propeties['-v']
+    'recordType': properties['-n'],
+    'default': properties['-d'],
+    'visible': properties['-v']
   });
 
   return object;
 }
 
-function addLayoutAssignments(object, propeties) {
+function addLayoutAssignments(object, properties) {
   if (object.Profile.hasOwnProperty('layoutAssignments')) {
 
   } else {
     object.Profile['layoutAssignments'] = [];
   }
   object.Profile['layoutAssignments'].push({
-    'layout': propeties['-n']
+    'layout': properties['-n']
   });
 
   return object;
 }
 
-function addFieldPermissions(object, propeties) {
+function addFieldPermissions(object, properties) {
   if (object.Profile.hasOwnProperty('fieldPermissions')) {
 
   } else {
     object.Profile['fieldPermissions'] = [];
   }
   object.Profile['fieldPermissions'].push({
-    'field': propeties['-n'],
-    'editable': propeties['-w'],
-    'readable': propeties['-r']
+    'field': properties['-n'],
+    'editable': properties['-w'],
+    'readable': properties['-r']
   });
 
   return object;

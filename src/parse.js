@@ -5,11 +5,11 @@ const fs = require('fs'),
 
 let parser = new parseXML.Parser();
 
-module.exports.overwriteFiles = function (path, folder, type, propeties) {
+module.exports.overwriteFiles = function (path, folder, type, properties) {
   fs.readdir(folder, (err, files) => {
     let quantityFiles = 0;
     files.forEach(file => {
-      overwriteFile(path, folder, file, type, propeties);
+      overwriteFile(path, folder, file, type, properties);
       quantityFiles++;
     });
     console.log( 'It\'s updated files: ', quantityFiles );
@@ -27,7 +27,7 @@ module.exports.clearFiles = function (path, folder) {
   })
 };
 
-function clearFile(path, folder, file ) {
+function clearFile(path, folder, file) {
   fs.readFile(path + '\\' + folder + '\\' + file, function (err, data, JSONObject) {
     parser.parseString(data, function (err, result, JSONObject) {
       obj = clearXMLObject(result);
@@ -46,10 +46,10 @@ function clearFile(path, folder, file ) {
   //console.log( 'The file is updated.' );
 };
 
-function overwriteFile(path, folder, file, type, propeties) {
+function overwriteFile(path, folder, file, type, properties) {
   fs.readFile(path + '\\' + folder + '\\' + file, function (err, data, JSONObject) {
     parser.parseString(data, function (err, result, JSONObject) {
-      obj = changeXMLObject(result, type, propeties);
+      obj = changeXMLObject(result, type, properties);
 
       //console.log(JSON.stringify(obj, null, ' '));
       // Below it's created new object and is saved him
