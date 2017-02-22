@@ -1,4 +1,20 @@
-module.exports.handleArg = function (val, index, params) {
+// Getting arguments from CLI
+module.exports.handleArg = ( argv ) => {
+  let params = {
+    folder: '',
+    file: '',
+    type: '',
+    properties: {}
+  };
+
+  argv.forEach( (val, index) => {
+    handleArgument( val, index, params );
+  });
+
+  return params;
+};
+
+handleArgument = ( val, index, params ) => {
   switch (index) {
     case 0:
     case 1:

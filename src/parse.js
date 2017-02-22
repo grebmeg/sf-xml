@@ -1,29 +1,39 @@
 const fs = require('fs'),
   parseXML = require('xml2js'),
-  changeXMLObject = require('./change.js').changeXMLObject,
-  clearXMLObject = require('./change.js').clearXMLObject;
+  { changeXMLObject, clearXMLObject } = require('./change.js');
 
 let parser = new parseXML.Parser();
 
-module.exports.overwriteFiles = function (path, folder, type, properties) {
+module.exports.overwriteFiles = (path, folder, type, properties) => {
   fs.readdir(folder, (err, files) => {
     let quantityFiles = 0;
     files.forEach(file => {
       overwriteFile(path, folder, file, type, properties);
       quantityFiles++;
     });
-    console.log( 'It\'s updated files: ', quantityFiles );
+    console.log( 'Quantity of updated files are: ', quantityFiles );
   })
 };
 
-module.exports.clearFiles = function (path, folder) {
+module.exports.clearFiles = (path, folder) => {
   fs.readdir(folder, (err, files) => {
     let quantityFiles = 0;
     files.forEach(file => {
       clearFile(path, folder, file);
       quantityFiles++;
     });
-    console.log( 'It\'s updated files: ', quantityFiles );
+    console.log( 'Quantity of cleaned files are: ', quantityFiles );
+  })
+};
+
+module.exports.parseFile = (pathApp, file) => {
+  fs.readFile( pathApp + '\\' + file, 'utf8', (err, data) => {
+    let dataset = data.split('\r\n');
+    console.log( dataset );
+    dataset.forEach( command => {
+
+      }
+    );
   })
 };
 
@@ -44,7 +54,7 @@ function clearFile(path, folder, file) {
     });
   });
   //console.log( 'The file is updated.' );
-};
+}
 
 function overwriteFile(path, folder, file, type, properties) {
   fs.readFile(path + '\\' + folder + '\\' + file, function (err, data, JSONObject) {
@@ -63,7 +73,7 @@ function overwriteFile(path, folder, file, type, properties) {
     });
   });
   //console.log( 'The file is updated.' );
-};
+}
 
 module.exports.overwriteFile = overwriteFile;
 module.exports.clearFile = clearFile;

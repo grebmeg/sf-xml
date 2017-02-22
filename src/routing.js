@@ -1,10 +1,7 @@
-const overwriteFiles = require('./parse.js').overwriteFiles,
-  overwriteFile = require('./parse.js').overwriteFile,
-  clearFiles = require('./parse.js').clearFiles,
-  clearFile = require('./parse.js').clearFile;
+const { overwriteFiles, overwriteFile, clearFiles, clearFile, parseFile }  = require('./parse.js');
 
 // Getting file from folder and parsing
-module.exports.routing = function (pathApp, file, folder, type, properties) {
+module.exports.routing = (pathApp, file, folder, type, properties) => {
   switch (file) {
     case '-all':
       overwriteFiles(pathApp, folder, type, properties);
@@ -14,8 +11,8 @@ module.exports.routing = function (pathApp, file, folder, type, properties) {
       break;
     default:
       switch (type) {
-        case '-parse':
-
+        case '-file':
+          parseFile( pathApp, file );
           break;
         case '-clear':
           clearFile(pathApp, folder, file);
