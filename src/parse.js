@@ -1,6 +1,7 @@
 const fs = require('fs'),
   parseXML = require('xml2js'),
-  { changeXMLObject, clearXMLObject } = require('./change.js');
+  { changeXMLObject, clearXMLObject } = require('./change.js'),
+  handleInput = require('./handleInput.js');
 
 let parser = new parseXML.Parser();
 
@@ -31,11 +32,15 @@ module.exports.parseFile = (pathApp, file) => {
     let dataset = data.split('\r\n');
     console.log( dataset );
     dataset.forEach( command => {
-
+        handleFile( command.split(' '), pathApp );
       }
     );
   })
 };
+
+function handleFile( argv, pathApp ) {
+  handleInput.handleInput( argv, pathApp);
+}
 
 function clearFile(path, folder, file) {
   fs.readFile(path + '\\' + folder + '\\' + file, function (err, data, JSONObject) {

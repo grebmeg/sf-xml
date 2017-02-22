@@ -16,6 +16,7 @@ In below link is given all metadata for profile definition:
 - [ ] change names of parameters for command in the better way;
 - [ ] generate one script file without dependencies from '/node_modules' folder;
 - [ ] refactor adding or deleting permissions;
+- [ ] take xml object from description, for example, from JSON;
 
 ## Install
 
