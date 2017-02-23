@@ -38,22 +38,30 @@ npm i
     * -all - parameter for updating all of the files in folder;
     * -clear - parameter for clearing all profiles;
 * type - type of XML permission:
-    * -fieldPermissions (or -fp)- mathes 'fieldPermissions';
-    * -layoutAssignments (or -la) - mathes 'layoutAssignments';
-    * -recordTypeVisibilities (or -rtv) - mathes 'recordTypeVisibilities';
-    * -objectPermissions (or -op) - mathes 'objectPermissions';
+    * -fieldPermissions (or -fp)- mathes 'fieldPermissions', values:
+        * -name=[string] (or -n) - name of field;
+        * -editable=[true|false] (or -w) - permission for 'editable';
+        * -readable=[true|false] (or -r) - permission for 'readable'';
+    * -layoutAssignments (or -la) - mathes 'layoutAssignments', values:
+        * -layout=[string] (or -n) - name of layout;
+    * -recordTypeVisibilities (or -rtv) - mathes 'recordTypeVisibilities', values:
+        * -recordType=[string] (or -n) - permission for 'recordType';
+        * -default=[true|false] (or -d) - permission for 'default';
+        * -visible=[true|false] (or -v) - permission for 'visible';
+    * -objectPermissions (or -op) - mathes 'objectPermissions', values:
+        * -object=[string] (or -n) - name of object;
+        * -allowCreate=[true|false] (or -c) - permission for 'allowCreate';
+        * -allowDelete=[true|false] (or -d) - permission for 'allowDelete';
+        * -allowEdit=[true|false] (or -e) - permission for 'allowEdit';
+        * -allowRead=[true|false] (or -r) - permission for 'allowRead';
+        * -modifyAllRecords=[true|false] (or -mar) - permission for 'modifyAllRecords';
+        * -viewAllRecords=[true|false] (or -var) - permission for 'viewAllRecords';
 * values - parameters XML permission:
-    * -name=[name] (or -n) - name of field or layout or object in depends on type;
-    * -editable=[true|false] (or -w) - permission for 'editable';
-    * -readable=[true|false] (or -r) - permission for 'readable'';
-    * -allowCreate=[true|false] (or -c) - permission for 'allowCreate';
-    * -allowDelete=[true|false] (or -d) - permission for 'allowDelete';
-    * -allowEdit=[true|false] (or -e) - permission for 'allowEdit';
-    * -allowRead=[true|false] (or -r) - permission for 'allowRead';
-    * -modifyAllRecords=[true|false] (or -mar) - permission for 'modifyAllRecords';
-    * -viewAllRecords=[true|false] (or -var) - permission for 'viewAllRecords';
-    * -delete=[true] - delete this.
+    * -delete=[true] - delete this permission, need to specify in the end of command.
     
 For example:  
 `node app test -all -fp -n='Account.TestTest__c' -w=true -r=true` - for adding new field permission;  
-`node app test -all -fp -n='Account.TestTest__c' -w=true -r=true -delete=true` - for deleting field permission
+`node app test -all -fp -n='Account.TestTest__c' -w=true -r=true -delete=true` - for deleting field permission;
+
+`node app test -clear` - clear all profiles from test folder;
+`node app test -clear Admin.profile` - clear only 'Admin.profile' from test folder;
