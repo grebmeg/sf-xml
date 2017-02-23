@@ -2,30 +2,38 @@ module.exports.changeXMLObject = function (object, type, properties) {
   if ( properties.hasOwnProperty('-delete') ) {
     switch (type) {
       case '-fp':
+      case '-fieldPermissions':
         return deleteXML( object, properties, 'fieldPermissions', 'field' );
         break;
       case '-la':
+      case '-layoutAssignments':
         return deleteXML(object, properties, 'layoutAssignments', 'layout');
         break;
       case '-rtv':
+      case '-recordTypeVisibilities':
         return deleteXML(object, properties, 'recordTypeVisibilities', 'recordType');
         break;
       case '-op':
+      case '-objectPermissions':
         return deleteXML(object, properties, 'objectPermissions', 'object');
         break;
     }
   } else {
     switch (type) {
       case '-fp':
+      case '-fieldPermissions':
         return addFieldPermissions(object, properties);
         break;
       case '-la':
+      case '-layoutAssignments':
         return addLayoutAssignments(object, properties);
         break;
       case '-rtv':
+      case '-recordTypeVisibilities':
         return addRecordTypeVisibilities(object, properties);
         break;
       case '-op':
+      case '-objectPermissions':
         return addObjectPermissions(object, properties);
         break;
     }
@@ -73,13 +81,13 @@ function addObjectPermissions(object, properties) {
     object.Profile['objectPermissions'] = [];
   }
   object.Profile['objectPermissions'].push({
-    'allowCreate': properties['-c'],
-    'allowDelete': properties['-d'],
-    'allowEdit': properties['-e'],
-    'allowRead': properties['-r'],
-    'modifyAllRecords': properties['-mr'],
-    'object': properties['-n'],
-    'viewAllRecords': properties['-vr']
+    'allowCreate': properties['-c'] || properties['-allowCreate'],
+    'allowDelete': properties['-d'] || properties['-allowDelete'],
+    'allowEdit': properties['-e'] || properties['-allowEdit'],
+    'allowRead': properties['-r'] || properties['-allowRead'],
+    'modifyAllRecords': properties['-mar'] || properties['-modifyAllRecords'],
+    'object': properties['-n'] || properties['-object'],
+    'viewAllRecords': properties['-var'] || properties['-viewAllRecords']
   });
 
   return object;
@@ -92,9 +100,9 @@ function addRecordTypeVisibilities(object, properties) {
     object.Profile['recordTypeVisibilities'] = [];
   }
   object.Profile['recordTypeVisibilities'].push({
-    'recordType': properties['-n'],
-    'default': properties['-d'],
-    'visible': properties['-v']
+    'recordType': properties['-n'] || properties['-recordType'],
+    'default': properties['-d'] || properties['-default'],
+    'visible': properties['-v'] || properties['-visible']
   });
 
   return object;
@@ -107,7 +115,7 @@ function addLayoutAssignments(object, properties) {
     object.Profile['layoutAssignments'] = [];
   }
   object.Profile['layoutAssignments'].push({
-    'layout': properties['-n']
+    'layout': properties['-n'] || properties['-layout']
   });
 
   return object;
@@ -120,9 +128,9 @@ function addFieldPermissions(object, properties) {
     object.Profile['fieldPermissions'] = [];
   }
   object.Profile['fieldPermissions'].push({
-    'field': properties['-n'],
-    'editable': properties['-w'],
-    'readable': properties['-r']
+    'field': properties['-n'] || properties['-field'],
+    'editable': properties['-w'] || properties['-editable'],
+    'readable': properties['-r'] || properties['-readable']
   });
 
   return object;

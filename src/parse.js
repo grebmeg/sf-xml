@@ -32,15 +32,11 @@ module.exports.parseFile = (pathApp, file) => {
     let dataset = data.split('\r\n');
     console.log( dataset );
     dataset.forEach( command => {
-        handleFile( command.split(' '), pathApp );
+        handleInput.handleInput( command.split(' '), pathApp)
       }
     );
   })
 };
-
-function handleFile( argv, pathApp ) {
-  handleInput.handleInput( argv, pathApp);
-}
 
 function clearFile(path, folder, file) {
   fs.readFile(path + '\\' + folder + '\\' + file, function (err, data, JSONObject) {
@@ -66,7 +62,7 @@ function overwriteFile(path, folder, file, type, properties) {
     parser.parseString(data, function (err, result, JSONObject) {
       obj = changeXMLObject(result, type, properties);
 
-      //console.log(JSON.stringify(obj, null, ' '));
+      console.log(JSON.stringify(obj, null, ' '));
       // Below it's created new object and is saved him
       let builder = new parseXML.Builder();
       let XMLObject = builder.buildObject(obj);

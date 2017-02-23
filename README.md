@@ -10,7 +10,7 @@ In below link is given all metadata for profile definition:
 - [x] adding and deleting 'recordTypeVisibilities' for one or more profiles;
 - [x] performing command for clearing all profiles;
 - [x] performing command for clearing only one profile;
-- [ ] performing commands from prepared file;
+- [ ] performing commands from prepared file (now you can copy list commands and past to CLI);
 - [ ] beforehand check of existing permission;
 - [ ] error handling;
 - [ ] change names of parameters for command in the better way;
@@ -38,20 +38,20 @@ npm i
     * -all - parameter for updating all of the files in folder;
     * -clear - parameter for clearing all profiles;
 * type - type of XML permission:
-    * -fp - mathes 'fieldPermissions';
-    * -la - mathes 'layoutAssignments';
-    * -rtv - mathes 'recordTypeVisibilities';
-    * -op - mathes 'objectPermissions';
+    * -fieldPermissions (or -fp)- mathes 'fieldPermissions';
+    * -layoutAssignments (or -la) - mathes 'layoutAssignments';
+    * -recordTypeVisibilities (or -rtv) - mathes 'recordTypeVisibilities';
+    * -objectPermissions (or -op) - mathes 'objectPermissions';
 * values - parameters XML permission:
-    * -n=[name] - name of field or layout or object in depends on type;
-    * -w=[true|false] - permission for 'editable';
-    * -r=[true|false] - permission for 'readable'';
-    * -c=[true|false] - permission for 'allowCreate';
-    * -d=[true|false] - permission for 'allowDelete';
-    * -e=[true|false] - permission for 'allowEdit';
-    * -r=[true|false] - permission for 'allowRead';
-    * -mr=[true|false] - permission for 'modifyAllRecords';
-    * -vr=[true|false] - permission for 'viewAllRecords';
+    * -name=[name] (or -n) - name of field or layout or object in depends on type;
+    * -editable=[true|false] (or -w) - permission for 'editable';
+    * -readable=[true|false] (or -r) - permission for 'readable'';
+    * -allowCreate=[true|false] (or -c) - permission for 'allowCreate';
+    * -allowDelete=[true|false] (or -d) - permission for 'allowDelete';
+    * -allowEdit=[true|false] (or -e) - permission for 'allowEdit';
+    * -allowRead=[true|false] (or -r) - permission for 'allowRead';
+    * -modifyAllRecords=[true|false] (or -mar) - permission for 'modifyAllRecords';
+    * -viewAllRecords=[true|false] (or -var) - permission for 'viewAllRecords';
     * -delete=[true] - delete this.
     
 For example:  
