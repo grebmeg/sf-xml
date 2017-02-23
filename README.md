@@ -63,5 +63,5 @@ For example:
 `node app test -all -fp -n='Account.TestTest__c' -w=true -r=true` - for adding new field permission;  
 `node app test -all -fp -n='Account.TestTest__c' -w=true -r=true -delete=true` - for deleting field permission;
 
-`node app test -clear` - clear all profiles from test folder;
-`node app test -clear Admin.profile` - clear only 'Admin.profile' from test folder;
+`node app test -clear` - clear all profiles from test folder;  
+`node app test -clear Admin.profile` - clear only 'Admin.profile' from test folder;  
